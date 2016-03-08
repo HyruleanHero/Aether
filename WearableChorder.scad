@@ -45,9 +45,9 @@ module thumbPlate(){
 
 module connectLoopPos(){
      intersection(){
-	  cube([handWidth, handHeight, handThickness],true); 
+	  cube([handWidth, handHeight+4, handThickness+6],true); 
 	  rotate([90,0,0]){ 
-	       scale([handWidth/handThickness,1,1]){ 
+	       scale([handWidth/handThickness,1,1.3]){ 
 		    cylinder(h = handHeight, d = handThickness, center = true, $fn = 60);
 	       }
 	  }
@@ -57,7 +57,7 @@ module connectLoopPos(){
 module connectLoopNeg(){
      translate([0, -20, 0]){
 	  difference(){
-	       scale([1.05, 1, 1.05]) connectLoopPos();
+	       scale([1.13, 1, 1.2]) connectLoopPos();
 	       scale([1,3.1,1]) connectLoopPos();
 	       translate([7,0.1,-(handThickness/2)]){
 		    cube([handWidth*.7,56,handThickness], true);
@@ -75,61 +75,54 @@ module featherPosts(){
      //when looking at board with the adafruit logo on bottom and usb port closest to yourself
      
      //bottom right
-     translate([(0.45*25.4),-(0.9*25.4),-1]){cylinder(h = 4 ,r = featherHoleRadius, center = true);}
+     translate([(0.45*25.4),-(0.9*25.4),-2]){cylinder(h = 4 ,r = featherHoleRadius, center = true);}
      //bottom left
-     translate([-(0.45*25.4),-(0.9*25.4),-1]){cylinder(h = 4 ,r = featherHoleRadius, center = true);}
+     translate([-(0.45*25.4),-(0.9*25.4),-2]){cylinder(h = 4 ,r = featherHoleRadius, center = true);}
      //top right
-     translate([(0.45*25.4),(0.9*25.4),-1]){cylinder(h = 4 ,r = featherHoleRadius, center = true);}
+     translate([(0.45*25.4),(0.9*25.4),-2]){cylinder(h = 4 ,r = featherHoleRadius, center = true);}
      //top left
-     translate([-(0.45*25.4),(0.9*25.4),-1]){cylinder(h = 4 ,r = featherHoleRadius, center = true);}
+     translate([-(0.45*25.4),(0.9*25.4),-2]){cylinder(h = 4 ,r = featherHoleRadius, center = true);}
 }
+
 module featherFootprint(){
      intersection(){  
-	  union(){
-	       difference(){
-		    scale([1.3,1.3,1]){
-			 cube([.9*25.4,2*25.4,13],true);
-		    }
-		    
-		    translate([0,0,2.5]){
-			 scale([1.2,1.2,1]){
-			      cube([.9*25.4,2*25.4,13],true);
-			 }
-		    }
+	    union(){
+		        difference(){
+			         scale([1.3,1.3,1]){
+				       cube([.9*25.4,2*25.4,13],true);
+				           }
+				     
+				     translate([0,0,2.5]){
+					   scale([1.2,1.2,1]){
+						      cube([.9*25.4,2*25.4,13],true);
+						       }
+					       }
 
-		    translate([14.5,0,-1]){
-			 cube([2,13,1.5], true);
-		    }
-		    
-		    translate([0,-30,-1]){
-			 cube([12,8,8],true);
-		    }
-		    
-		    translate([-(.46*25.4),25.4-(.42*25.4),-1]){
-			 cube([10,10,10],true);
-		    }
-	       }
-	  featherPosts();
-	  }
-	  rotate([0,90,0]){
-	       scale([1,1.95,1]){
-		    cylinder(r = ( 1.3* ((.9*25.4)/2)), h = (1.3*(2*25.4)), center = true);
-	       }
-	  }
+				         translate([14.5,0,-1]){
+					       cube([2,13,1.5], true);
+					           }
+					     
+					     translate([0,-30,-1]){
+						   cube([12,8,8],true);
+						       }
+					         
+					         translate([-(.46*25.4),25.4-(.42*25.4),-1]){
+						       cube([10,10,10],true);
+						           }
+						        }
+			  featherPosts();
+			    }
+	      rotate([0,90,0]){
+		          scale([1,1.95,1]){
+			           cylinder(r = ( 1.3* ((.9*25.4)/2)), h = (1.3*(2*25.4)), center = true);
+				          }
+			    }
      }
 }
 
-module fingerBucket(){
-     difference(){
-translate([-12.5,-10,0]) rotate([0,0,15]) scale([2.2,1,6]) cylinder(h = 3, d = 45, center = true);
-translate([0,0,4]) fingerSocketsPos();		       
-translate([37,0,]) rotate([0,-90,10]) scale([1,2.3,1]) cylinder(h = 80, r = 1.5); 
-}
-}
- 
 module batteryFootprint(){
      difference(){
-	  translate([-2,2,-1]) scale([1.1,1.1,1.5]) cube([29,36,4.75]);
+	  translate([-2,2,-1]) scale([1.1,1.1,1.7]) cube([29,36,4.75]);
 	  cube([29,36,4.75]);
 	  
 	  }
@@ -352,11 +345,11 @@ module mountingBrackets(bracketHeight){
 module connectLoopR0(){
      difference(){
 	  translate([0,-55,0]){
-	      scale([1,1,1]){ 
+	      scale([1,1,1.2]){ 
 		   connectLoopNeg();
 	      }
 	  }
-	  translate([55,-65,-15]){
+	  translate([55,-70,-15]){
 	       rotate([80,0,-35]){
 		    cylinder(h=75,d=34,center=true);
 	       }
@@ -364,8 +357,7 @@ module connectLoopR0(){
      }
 }
 
-module wireRoute1(){
-     difference(){
+module wireRoute1(){     difference(){
 	  cylinder(r=3.4, h=20, center= true);
 	  cylinder(h = 50, r = 3, center = true);
      }
@@ -379,25 +371,73 @@ module wireRoute0(){
 // FINAL RENDER
 //this final render will be specially structured as such 
 //union(){..translate(){moduleName(); .. translate(){moduleName();}.... repeat as needed... }}
-union(){
 
-     translate([-47,-49,-11]){ rotate([-15,-10,2.5]){mountingBrackets();}}
-     translate([0,0,0]){connectLoopR0();}
-     translate([45,-19,-4]){ rotate([-14,-10,0]){mountingBrackets();}}
-     translate([20,-74,22]){rotate([15,0,90]){featherFootprint();}}
-     translate([-20,-90,21]){rotate([-30,1,90]){batteryFootprint();}}
+module finalHandBase(){
+     union(){
+	  translate([0,0,0]){connectLoopR0();}
+	  
+	  translate([20,-80,29]){rotate([15,0,90]){featherFootprint();}}
+	  translate([-15,-95,30]){rotate([-30,1,90]){batteryFootprint();}}
+	  
+	  difference(){
+	       translate([12,17.5,-22]){ rotate([-20,-8,3]){fingerBucketR0();}}
+	       translate([43,-20,-10]){ rotate([80,15,0]){ scale([1,1,3.9]){wireRoute0();}}}
+	      // translate([0,27,0]){ rotate([0,0,-7]){cube([150,150,150],true);}}
+	  }
+	  difference(){
+	       translate([40,(23+(-55)),-25]){ rotate([-20,127,-25]){ thumbBucketR();}}
+	       translate([45,-22,-10]){ rotate([80,15,0]){ scale([1,1,3.9]){wireRoute0();}}}
+	       //translate([0,27,0]){ rotate([0,0,-7]){cube([150,150,150],true);}}
+	  }
+	  difference(){
+	       translate([43,-18,-10]){ rotate([80,15,0]){ scale([1,1,3.9]){wireRoute1();}}}
+	       translate([44,-20,-10]){ rotate([80,15,0]){ scale([1.1,1,3.9]){wireRoute0();}}}
+	       //translate([0,27,0]){ rotate([0,0,-7]){cube([150,150,150],true);}}
+	  }
+	  difference(){
+	       translate([49,-20,-4]){ rotate([-14,-2,0]){mountingBrackets();}}
+	      // translate([0,27,0]){ rotate([0,0,-7]){cube([150,150,150],true);}}
+	  }
+	  difference(){
+	       translate([-47,-49,-11]){ rotate([-15,-10,2.5]){mountingBrackets();}}
+	    //   translate([0,27,0]){ rotate([0,0,-7]){cube([150,150,150],true);}}
+	  }
      
-     difference(){
-	  translate([12,17.5,-22]){ rotate([-20,-8,3]){fingerBucketR0();}}
-	  translate([43,-20,-10]){ rotate([80,15,0]){ scale([1,1,3.9]){wireRoute0();}}}
      }
-     difference(){
-	  translate([40,(23+(-55)),-25]){ rotate([-20,127,-25]){ thumbBucketR();}}
-	  translate([45,-22,-10]){ rotate([80,15,0]){ scale([1,1,3.9]){wireRoute0();}}}
-     }
-     difference(){
-	  translate([43,-18,-10]){ rotate([80,15,0]){ scale([1,1,3.9]){wireRoute1();}}}
-	  translate([44,-20,-10]){ rotate([80,15,0]){ scale([1.1,1,3.9]){wireRoute0();}}}
-     }     
-
 }
+difference(){
+     rotate([90,0,0]){
+	  translate([0,95,20]){
+	       finalHandBase();
+	  }
+     }
+     
+     translate([-55,-80,80]){
+//	  #cube([120,120,120]);
+     }
+     translate([-55,-80,40]){
+//	  #cube([125,125,40]);
+     }
+     translate([-55,-80,-80]){
+//	  #cube([120,120,120]);
+     }
+}
+/*
+module knifeSlice0(){
+     difference(){
+	  connectLoopR0();
+	  translate([0,-13,-50]){
+	       cube([150,150,150],true);
+	  }
+     }
+}
+
+module knifeSlice1(){
+     difference(){connectLoopR0();
+	  translate([-50,-130,-25]) cube([150,50,50]);
+     }
+}
+
+knifeSlice0();
+*/
+
