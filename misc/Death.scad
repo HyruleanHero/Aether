@@ -1,4 +1,15 @@
 foreheadWidth = 130;
+InterPupiDist = ???;
+
+
+//TODO make module for the fancy eye shape of the Death mask
+//TODO nab Interpupilary...
+//TODO design spikes
+//Find out how the F to plate this sumbitch
+
+
+
+
 rotate([180,0,0]){
      difference() {
 	  scale([1,1,.5]) sphere(r = (foreheadWidth + 10)/2, h = 60, $fn = 60);
