@@ -166,8 +166,10 @@ module BraceMounts(){
      difference(){
      translate([-46,-44,0]) rotate([-115,0,0]) scale([1,1.5,1]) cylinder(h=89,d=8);
         translate([-46,-44,0]) rotate([-115,0,0]) cylinder(h=92,d=4);
-		  //  translate ([-55,10,-50]) rotate([0,0,11]) cube([150,100,100]);
+		  // translate ([-55,10,-50]) rotate([0,0,11]) cube([150,100,100]);
 	
+//radial side
+//translate([28,-14,-20]) rotate([-102,20,0]) cylinder(h=80,d=8);
 }
 
 
@@ -224,7 +226,7 @@ translate([35,22,-12]) rotate([90,90,30]) cylinder(h=20,d=5,center=true);
 			  //Core of the radial mount
 translate([28,-14,-20]) rotate([-102,20,0]) cylinder(h=80,d=4);
 //	    translate ([-55,10,-50]) rotate([0,0,11]) cube([150,100,100]);
-translate ([-55,-92,-50]) rotate([0,0,11]) cube([150,100,100]);
+//translate ([-55,-92,-50]) rotate([0,0,11]) cube([150,100,100]);
 
 }
 }
@@ -246,7 +248,7 @@ difference(){
 			//String/cover hole top right
 	       mirror(0,1,0)  translate([-40,-4,0]) cylinder(h=40,d=4,center = true);    
 	     //  	    translate ([-55,10,-50]) rotate([0,0,11]) cube([150,100,100]);
-	     translate ([-55,-92,-50]) rotate([0,0,11]) cube([150,100,100]);
+//	     translate ([-55,-92,-50]) rotate([0,0,11]) cube([150,100,100]);
 }
 
 difference(){
@@ -257,16 +259,16 @@ connectLoopThumb();
        //Core excavation for the ulnal side bracemount
               translate([-46,-44,0]) rotate([-115,0,0]) cylinder(h=94,d=4);
 //	      	    translate ([-55,10,-50]) rotate([0,0,11]) cube([150,100,100]);
-translate ([-55,-92,-50]) rotate([0,0,11]) cube([150,100,100]);
+//translate ([-55,-92,-50]) rotate([0,0,11]) cube([150,100,100]);
 }
 
-difference(){
+//difference(){
 BraceMounts();
 //	    translate ([-55,10,-50]) rotate([0,0,11]) cube([150,100,100]);
 //translate ([-55,10,-50]) cube([150,100,100]);
-translate ([-55,-92,-50]) rotate([0,0,11]) cube([150,100,100]);
+//translate ([-55,-92,-50]) rotate([0,0,11]) cube([150,100,100]);
 
-}
+//}
 
 //hint* you totally have to go into each module above and make sure to uncomment/add the proper differences as posted below
 //uncomment to remove the farthest piece
@@ -284,5 +286,5 @@ translate([44,23,-12]) rotate([-105,0,9]) difference(){
 }
 		translate([14,43,-25.5])  rotate([-45,-14,3]) fingerSocketsPos();
 //			    //translate ([-55,10,-50]) rotate([0,0,11]) cube([150,100,100]);
-			    translate ([-55,-92,-50]) rotate([0,0,11]) cube([150,100,100]);
+			    //translate ([-55,-92,-50]) rotate([0,0,11]) cube([150,100,100]);
 }
